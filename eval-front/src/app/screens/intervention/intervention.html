@@ -1,0 +1,48 @@
+<div class="container">
+    <h2>Intervention</h2>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+    </button>
+    <table class="table table-striped table-hover">
+    <thead>
+        <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter intervention</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form [formGroup]="formGroup" (ngSubmit)="add()">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="Date">Date</label>
+            <input id="Date" class="form-control" type="date" formControlName="date" />
+          </div>
+
+          <div class="mb-3">
+            <label for="duree" class="form-label">Durée (heures)</label>
+            <input type="number" class="form-control" id="duree" formControlName="duree" />
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          <button type="submit" class="btn btn-primary">Enregistrer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

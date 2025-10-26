@@ -1,0 +1,13 @@
+<div class="m-3 row-cols-xl-3 row-cols-md-2 row-cols-1">
+<h2>Connexion</h2>
+<form class="d-flex flex-column" [formGroup]="formGroup">
+  <div class="mb-3">
+    <label for="email" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter email"/>
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter password"/>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
