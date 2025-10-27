@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, tap} from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'  // ✅ fournit le service globalement
+  providedIn: 'root'
 })
 
 export class ProjetService {

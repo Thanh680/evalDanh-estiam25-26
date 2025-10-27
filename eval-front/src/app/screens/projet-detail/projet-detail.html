@@ -40,7 +40,34 @@
             <label for="duree" class="form-label">Durée (heures)</label>
             <input type="number" class="form-control" id="duree" formControlName="duree" />
           </div>
+          <div class="mb-3">
+            <label for="salaries" class="form-label">Salariés</label>
+              <ul class="list-group">
+                @for (salarie of salaries; track $index) {
+                  <li class="list-group-item">
+                    <input class="form-check-input" type="checkbox"
+                           [value]="salarie.id"
+                           (change)="onSalarieChange(salarie.id, $event)">
+                    {{salarie.nom}} {{salarie.prenom}}
+                  </li>
+                }
+              </ul>
+          </div>
+          <div class="mb-3">
+            <label for="materiels" class="form-label">Matériel</label>
+            <ul class="list-group">
+              @for (materiel of materiels; track $index) {
+                <li class="list-group-item">
+                  <input class="form-check-input me-1" type="checkbox"
+                         [value]="materiel.id"
+                         (change)="onMaterielChange(materiel.id, $event)">
+                  {{materiel.designation}}
+                </li>
+              }
+            </ul>
+          </div>
         </div>
+
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
           <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" [disabled]="formAjout.invalid">Ajouter</button>

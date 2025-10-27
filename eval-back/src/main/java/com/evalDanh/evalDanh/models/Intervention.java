@@ -34,11 +34,22 @@ public class Intervention {
     @ManyToOne
     protected Projet projet;
 
-    @OneToMany(mappedBy = "intervention")
-    @JsonView(ProjetView.class)
-    protected List<Salarie> salaries = new ArrayList<>();
+    @ManyToMany
 
-    @OneToMany(mappedBy = "intervention")
     @JsonView(ProjetView.class)
-    protected List<Materiel> materiels = new ArrayList<>();
+    @JoinTable(
+            name = "intervention_salarie",
+            joinColumns = @JoinColumn(name = "intervention_id"),
+            inverseJoinColumns = @JoinColumn(name = "salarie_id")
+    )
+    protected List<Salarie> salaries;
+
+    @OneToMany
+    @JoinTable(
+            name = "intervention_materiel",
+            joinColumns = @JoinColumn(name = "intervention_id"),
+            inverseJoinColumns = @JoinColumn(name = "materiel_id")
+    )
+    @JsonView(ProjetView.class)
+    protected List<Materiel> materiels;
 }

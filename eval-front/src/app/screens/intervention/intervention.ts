@@ -18,7 +18,7 @@ export class Intervention {
   formBuilder = inject(FormBuilder);
   formGroup = this.formBuilder.group({
     date: ['', Validators.required],
-      duree: [null, Validators.required]
+    duree: [null, Validators.required]
   });
 
   add(){

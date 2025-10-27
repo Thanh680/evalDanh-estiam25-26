@@ -5,7 +5,7 @@ import { Salarie } from "@app/models/salarie";
 import {BehaviorSubject, tap} from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'  // ✅ fournit le service globalement
+  providedIn: 'root'
 })
 
 export class InterventionService {
@@ -24,9 +24,8 @@ interventions$: BehaviorSubject<Intervention[]> = new BehaviorSubject<Interventi
     const intervention: Intervention = {
       date: new Date(formGroup.value.date),
       duree: formGroup.value.duree,
-      salarie: [
-    { nom: 'Dupont', prenom: 'Jean' }
-  ],
+      salaries: formGroup.value.salaries.map((id: number) => ({ id })),
+      materiels: formGroup.value.materiels.map((id: number) => ({ id })),
       projet: { id: projetId }
     };
     console.log('Prepared intervention:', formGroup.value);

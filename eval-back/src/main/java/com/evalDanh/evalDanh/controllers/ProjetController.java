@@ -36,7 +36,7 @@ public class ProjetController {
 
     @PostMapping("/add")
     @JsonView(ProjetView.class)
-    public ResponseEntity<Projet> addP(@RequestBody Projet projet) {
+    public ResponseEntity<Projet> add(@RequestBody Projet projet) {
         Projet saved = projetDao.save(projet);
         return ResponseEntity.ok(saved);
     }

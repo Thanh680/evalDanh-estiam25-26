@@ -16,10 +16,15 @@ INSERT INTO intervention (projet_id, date, duree) VALUES
 INSERT INTO salarie (nom, prenom) VALUES
                                  ('John','Doe'),
                                  ('Jane','Smith'),
-                                    ('Alice','Johnson');
+                                 ('Alice','Johnson');
 
 INSERT INTO client (id, adresse, projet_id) VALUES
                                     ('1','123 Main St','1'),
                                     ('2','456 Oak Ave','2'),
                                     ('3','789 Pine Rd',NULL);
+
+INSERT INTO materiel (designation) VALUES
+                                    ('Laptop'),
+                                    ('Projector'),
+                                    ('Tablet');
 

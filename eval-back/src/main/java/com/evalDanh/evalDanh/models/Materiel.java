@@ -1,6 +1,7 @@
 package com.evalDanh.evalDanh.models;
 
 import com.evalDanh.evalDanh.views.InterventionView;
+import com.evalDanh.evalDanh.views.MaterielView;
 import com.evalDanh.evalDanh.views.ProjetView;
 import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.*;
@@ -18,12 +19,13 @@ public class Materiel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(InterventionView.class)
+    @JsonView({MaterielView.class, ProjetView.class})
     protected Integer id;
 
-    @JsonView(InterventionView.class)
+    @JsonView({MaterielView.class, ProjetView.class})
     protected String designation;
 
     @ManyToOne
+    @JoinColumn(name = "intervention_id")
     protected Intervention intervention;
 }

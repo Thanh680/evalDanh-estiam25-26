@@ -2,6 +2,7 @@ export type Intervention = {
     id?: number;
     date: Date;
     duree: number;
-    salarie: Salarie[];
+    salaries: { id: number }[];
+    materiels: { id: number }[];
     projet: { id: number };
 }
