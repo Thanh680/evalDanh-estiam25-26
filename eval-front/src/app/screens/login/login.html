@@ -2,13 +2,13 @@
   <h2>Connexion</h2>
   <form class="d-flex flex-column" (ngSubmit)="login()" [formGroup]="formGroup">
     <div class="mb-3">
-      <label for="email" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter email"/>
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" formControlName="email" placeholder="Entrer un email"/>
     </div>
     <div class="mb-3">
-      <label for="password" class="form-label">Password</label>
-      <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter password"/>
+      <label for="password" class="form-label">Mot de passe</label>
+      <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter le mot de passe"/>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Connexion</button>
   </form>
 </div>

@@ -3,6 +3,7 @@ package com.evalDanh.evalDanh.controllers;
 import com.evalDanh.evalDanh.dao.InterventionDao;
 import com.evalDanh.evalDanh.models.Intervention;
 import com.evalDanh.evalDanh.models.Materiel;
+import com.evalDanh.evalDanh.security.IsUser;
 import com.evalDanh.evalDanh.views.InterventionView;
 import com.evalDanh.evalDanh.views.MaterielView;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -23,6 +24,7 @@ public class InterventionController {
     protected InterventionDao interventionDao;
 
     @GetMapping("/list")
+    @IsUser
     @JsonView(InterventionView.class)
     public List<Intervention> show() {
         return interventionDao.findAll();
@@ -30,12 +32,14 @@ public class InterventionController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/salarie/{id}")
+    @IsUser
     @JsonView(InterventionView.class)
     public List<Intervention> getInterventionsBySalarie(@PathVariable Integer id) {
-        return interventionDao.findBySalaries_Id(id);
+        return interventionDao.findBySalaries_IdOrderByDateAsc(id);
     }
 
     @PostMapping("/add")
+    @IsUser
     @JsonView(InterventionView.class)
     public ResponseEntity<Intervention> addIntervention(@RequestBody Intervention intervention) {
         Intervention saved = interventionDao.save(intervention);

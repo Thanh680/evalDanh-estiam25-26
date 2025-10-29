@@ -11,17 +11,20 @@ import {BehaviorSubject, tap, Observable} from 'rxjs';
 export class InterventionService {
 interventions$: BehaviorSubject<Intervention[]> = new BehaviorSubject<Intervention[]>([]);
 
-      http = inject(HttpClient);
+  token = localStorage.getItem('token');
+  http = inject(HttpClient);
 
   list() {
-    this.http.get(`http://localhost:8080/api/intervention/list`)
+    this.http.get(`http://localhost:8080/api/intervention/list`,{
+      headers: { Authorization: `Bearer ${this.token}` }})
       .subscribe(response => {
         console.log('Intervention data:', response);
       });
   }
 
   listBySalarie(salarieId: number): Observable<Intervention[]> {
-    return this.http.get<Intervention[]>(`http://localhost:8080/api/intervention/salarie/${salarieId}`);
+    return this.http.get<Intervention[]>(`http://localhost:8080/api/intervention/salarie/${salarieId}`,{
+      headers: { Authorization: `Bearer ${this.token}` }});
   }
 
   add(formGroup: any, projetId: number) {
@@ -32,21 +35,24 @@ interventions$: BehaviorSubject<Intervention[]> = new BehaviorSubject<Interventi
       materiels: formGroup.value.materiels.map((id: number) => ({ id })),
       projet: { id: projetId }
     };
-    this.http.post(`http://localhost:8080/api/intervention/add`, intervention)
+    this.http.post(`http://localhost:8080/api/intervention/add`, intervention,{
+      headers: { Authorization: `Bearer ${this.token}` }})
       .subscribe(response => {
         console.log('Adding intervention:', intervention);
       });
     }
 
   edit(intervention: Intervention) {
-    this.http.put(`http://localhost:8080/api/intervention`, intervention)
+    this.http.put(`http://localhost:8080/api/intervention`, intervention,{
+      headers: { Authorization: `Bearer ${this.token}` }})
       .subscribe(response => {
         console.log('Editing intervention:', intervention);
       });
   }
 
   delete(id: number) {
-    this.http.delete(`http://localhost:8080/api/intervention/${id}`)
+    this.http.delete(`http://localhost:8080/api/intervention/${id}`,{
+      headers: { Authorization: `Bearer ${this.token}` }})
       .subscribe(response => {
         console.log('Deleting intervention:', id);
       });

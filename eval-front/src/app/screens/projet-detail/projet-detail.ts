@@ -5,11 +5,14 @@ import {InterventionService} from '@app/services/intervention';
 import {FormArray, FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {SalarieService} from '@app/services/salarie';
 import {MaterielService} from '@app/services/materiel';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-projet-detail',
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule
   ],
   templateUrl: './projet-detail.html',
   styleUrl: './projet-detail.scss',

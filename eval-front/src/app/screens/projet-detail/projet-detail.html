@@ -5,7 +5,6 @@
     <table class="table table-striped table-hover">
       <thead>
       <tr>
-        <th>ID</th>
         <th>Date</th>
         <th>Duree</th>
       </tr>
@@ -14,9 +13,8 @@
 
         @for (intervention of projet.interventions; track $index) {
           <tr>
-            <td>{{ intervention.id }}</td>
-            <td>{{ intervention.date }}</td>
-            <td>{{ intervention.duree }}</td>
+            <td>{{ intervention.date | date:'dd/MM/yyyy' }}</td>
+            <td>{{ intervention.duree }}h</td>
           </tr>
         }
       </tbody>

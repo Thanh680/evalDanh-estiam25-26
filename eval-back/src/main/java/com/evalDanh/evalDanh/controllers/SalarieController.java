@@ -2,6 +2,7 @@ package com.evalDanh.evalDanh.controllers;
 
 import com.evalDanh.evalDanh.dao.SalarieDao;
 import com.evalDanh.evalDanh.models.Salarie;
+import com.evalDanh.evalDanh.security.IsUser;
 import com.evalDanh.evalDanh.views.SalarieView;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.RequiredArgsConstructor;
@@ -21,12 +22,14 @@ public class SalarieController {
     protected SalarieDao salarieDao;
 
     @GetMapping("/list")
+    @IsUser
     @JsonView(SalarieView.class)
     public List<Salarie> show() {
         return salarieDao.findAll();
     }
 
     @GetMapping("/get/{id}")
+    @IsUser
     @JsonView(SalarieView.class)
     public ResponseEntity<Salarie> get(@PathVariable Integer id) {
         return salarieDao.findById(id)
@@ -35,6 +38,7 @@ public class SalarieController {
     }
 
     @PostMapping("/add")
+    @IsUser
     @JsonView(SalarieView.class)
     public ResponseEntity<Salarie> add(@RequestBody Salarie salarie) {
         Salarie saved = salarieDao.save(salarie);
@@ -42,6 +46,7 @@ public class SalarieController {
     }
 
     @PutMapping("/edit/{id}")
+    @IsUser
     @JsonView(SalarieView.class)
     public ResponseEntity<Salarie> edit(@PathVariable Integer id, @RequestBody Salarie salarie) {
         return salarieDao.findById(id)
@@ -55,6 +60,7 @@ public class SalarieController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @IsUser
     public ResponseEntity<Void> delete(@PathVariable Integer id) {
         if (salarieDao.existsById(id)) {
             salarieDao.deleteById(id);

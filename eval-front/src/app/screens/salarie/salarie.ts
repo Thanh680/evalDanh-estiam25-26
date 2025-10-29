@@ -3,11 +3,13 @@ import {SalarieService} from '@app/services/salarie';
 import { Salarie } from '@app/models/salarie';
 import {InterventionService} from '@app/services/intervention';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-salarie',
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DatePipe
   ],
   templateUrl: './salarie.html',
   styleUrl: './salarie.scss',

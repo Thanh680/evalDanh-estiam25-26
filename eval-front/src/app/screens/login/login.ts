@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {AppuserService} from '@app/services/appuser';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -10,6 +12,8 @@ import {AppuserService} from '@app/services/appuser';
   providers: [AppuserService]
 })
 export class Login {
+
+  constructor(private router: Router) {}
 
   appuserService = inject(AppuserService);
 
@@ -27,8 +31,8 @@ export class Login {
     console.log(user);
     this.appuserService.login(user).subscribe({
       next: (token) => {
-        // Connexion réussie
-        console.log('Token reçu:', token);
+        localStorage.setItem('token', token);
+        this.router.navigate(['/']);
       },
       error: (err) => {
         console.log('Erreur reçue:', err);
