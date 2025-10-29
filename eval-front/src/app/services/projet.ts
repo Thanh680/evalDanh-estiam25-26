@@ -20,6 +20,12 @@ export class ProjetService {
         this.projet$.next(projets)
       }))
   }
+  totaleDuree(id: number){
+    return this.http.get<number>(`http://localhost:8080/api/projet/totaleDuree/${id}`,{
+      headers: { Authorization: `Bearer ${this.token}` }})
+      .pipe(tap(() => this.list().subscribe()));
+  }
+
   get(id: number){
     return this.http.get<Projet>(`http://localhost:8080/api/projet/get/${id}`,{
       headers: { Authorization: `Bearer ${this.token}` }})

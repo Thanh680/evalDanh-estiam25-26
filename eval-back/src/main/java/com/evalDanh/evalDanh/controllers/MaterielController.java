@@ -25,7 +25,7 @@ public class MaterielController {
     @IsUser
     @JsonView(MaterielView.class)
     public List<Materiel> show() {
-        return materielDao.findAll();
+        return materielDao.findAllWithoutIntervention();
     }
 
     @GetMapping("/get/{id}")

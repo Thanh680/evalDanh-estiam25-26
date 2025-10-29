@@ -10,6 +10,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,7 +28,5 @@ public class Materiel {
     @JsonView({MaterielView.class, ProjetView.class})
     protected String designation;
 
-    @ManyToOne
-    @JoinColumn(name = "intervention_id")
-    protected Intervention intervention;
-}
+    @ManyToMany(mappedBy = "materiels")
+    protected Set<Intervention> interventions = new HashSet<>();}

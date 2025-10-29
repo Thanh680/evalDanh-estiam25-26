@@ -1,6 +1,10 @@
 @if (projet) {
   <div class="container">
     <h2>{{ projet.nom }}</h2>
+    @if (totaleDuree > 0) {
+      <p><strong>Temps restant des interventions :</strong> {{ totaleDuree }} heures</p>
+
+    }
     <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#ajoutInterventionModal">Ajouter une intervention</button>
     <table class="table table-striped table-hover">
       <thead>

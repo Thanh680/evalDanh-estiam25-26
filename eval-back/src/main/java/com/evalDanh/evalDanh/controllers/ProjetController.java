@@ -28,6 +28,19 @@ public class ProjetController {
         return projetDao.findAll();
     }
 
+    @GetMapping("/totaleDuree/{id}")
+    @JsonView(ProjetView.class)
+    public ResponseEntity<Integer> getDureeTotale(@PathVariable Integer id) {
+        return projetDao.findById(id)
+                .map(projet -> {
+                    int total = projet.getInterventions().stream()
+                            .mapToInt(intervention -> intervention.getDuree() != null ? intervention.getDuree() : 0)
+                            .sum();
+                    return ResponseEntity.ok(total);
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @GetMapping("/get/{id}")
     @IsUser
     @JsonView(ProjetView.class)

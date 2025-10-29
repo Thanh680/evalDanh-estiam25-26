@@ -10,8 +10,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.time.Instant;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -43,12 +45,12 @@ public class Intervention {
     )
     protected List<Salarie> salaries;
 
-    @OneToMany
+    @ManyToMany
+    @JsonView({ProjetView.class, InterventionView.class})
     @JoinTable(
             name = "intervention_materiel",
             joinColumns = @JoinColumn(name = "intervention_id"),
             inverseJoinColumns = @JoinColumn(name = "materiel_id")
     )
-    @JsonView({ProjetView.class, InterventionView.class})
-    protected List<Materiel> materiels;
+    protected Set<Materiel> materiels = new HashSet<>();
 }

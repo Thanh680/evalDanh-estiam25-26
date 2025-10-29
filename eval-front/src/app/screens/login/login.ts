@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {AppuserService} from '@app/services/appuser';
 import { Router } from '@angular/router';
+import {App} from '@app/app';
 
 
 @Component({
@@ -9,13 +10,14 @@ import { Router } from '@angular/router';
   imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './login.html',
   styleUrl: './login.scss',
-  providers: [AppuserService]
+  providers: [AppuserService,App]
 })
 export class Login {
 
   constructor(private router: Router) {}
 
   appuserService = inject(AppuserService);
+  appService = inject(App);
 
   formBuilder = inject(FormBuilder);
   formGroup = this.formBuilder.group({
@@ -28,11 +30,13 @@ export class Login {
       email: this.formGroup.value.email ?? '',
       password: this.formGroup.value.password ?? ''
     };
-    console.log(user);
     this.appuserService.login(user).subscribe({
       next: (token) => {
         localStorage.setItem('token', token);
-        this.router.navigate(['/']);
+        this.appService.ngOnInit();
+        this.router.navigate(['/']).then(() => {
+          window.location.reload();
+        });
       },
       error: (err) => {
         console.log('Erreur reçue:', err);

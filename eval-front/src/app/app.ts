@@ -29,11 +29,9 @@ export class App implements OnInit {
     if (token) {
       this.appuserService.getProjet().subscribe(projet => {
         this.projet = projet;
-        console.log(this.projet)
       });
       this.appuserService.isAdmin().subscribe(result => {
         this.isAdmin = result;
-        console.log(result);
       });
     }
   }
@@ -45,6 +43,9 @@ export class App implements OnInit {
 
   logout() {
     localStorage.removeItem('token');
-    this.router.navigate(['/']);
+    this.ngOnInit();
+    this.router.navigate(['/']).then(() => {
+      window.location.reload();
+    });
   }
 }

@@ -23,6 +23,7 @@ export class ProjetDetail implements OnInit{
   projet: any = null;
   salaries: any[] = [];
   materiels: any[] = [];
+  totaleDuree: number = 0;
 
   constructor(private route: ActivatedRoute) {}
 
@@ -52,13 +53,16 @@ export class ProjetDetail implements OnInit{
     this.materielService.list().subscribe(data => {
       this.materiels = data;
     });
+    this.projetService.totaleDuree(this.projetId).subscribe(data => {
+      this.totaleDuree = data;
+    });
   }
 
   addIntervention() {
     if (this.formAjout.valid) {
-      console.log(this.formAjout.value);
       this.interventionService.add(this.formAjout, this.projetId);
-      //window.location.reload();
+      this.ngOnInit();
+      window.location.reload();
     }
   }
 
