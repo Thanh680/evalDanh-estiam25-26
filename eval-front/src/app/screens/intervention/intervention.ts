@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { Salarie } from '../salarie/salarie';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { HttpClient } from '@angular/common/http';

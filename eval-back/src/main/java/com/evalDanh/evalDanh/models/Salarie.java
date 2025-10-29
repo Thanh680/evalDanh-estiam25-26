@@ -1,6 +1,5 @@
 package com.evalDanh.evalDanh.models;
 
-import com.evalDanh.evalDanh.views.InterventionView;
 import com.evalDanh.evalDanh.views.ProjetView;
 import com.evalDanh.evalDanh.views.SalarieView;
 import com.fasterxml.jackson.annotation.JsonView;

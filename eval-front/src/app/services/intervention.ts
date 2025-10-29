@@ -2,7 +2,7 @@ import { inject, Injectable } from "@angular/core";
 import {HttpClient} from '@angular/common/http';
 import { Intervention } from "@app/models/intervention";
 import { Salarie } from "@app/models/salarie";
-import {BehaviorSubject, tap} from 'rxjs';
+import {BehaviorSubject, tap, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,10 @@ interventions$: BehaviorSubject<Intervention[]> = new BehaviorSubject<Interventi
       });
   }
 
+  listBySalarie(salarieId: number): Observable<Intervention[]> {
+    return this.http.get<Intervention[]>(`http://localhost:8080/api/intervention/salarie/${salarieId}`);
+  }
+
   add(formGroup: any, projetId: number) {
     const intervention: Intervention = {
       date: new Date(formGroup.value.date),
@@ -28,7 +32,6 @@ interventions$: BehaviorSubject<Intervention[]> = new BehaviorSubject<Interventi
       materiels: formGroup.value.materiels.map((id: number) => ({ id })),
       projet: { id: projetId }
     };
-    console.log('Prepared intervention:', formGroup.value);
     this.http.post(`http://localhost:8080/api/intervention/add`, intervention)
       .subscribe(response => {
         console.log('Adding intervention:', intervention);

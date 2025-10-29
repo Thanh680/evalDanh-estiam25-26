@@ -1,1 +1,20 @@
-<p>salarie works!</p>
+<div class="container">
+  <h2>Planning salarié</h2>
+  <div class="container">
+    <label>Sélectionner un salarié : </label>
+    <select [formGroup]="formGroup" (change)="onSalarieChange($event)">
+      @for (salarie of salaries; track $index) {
+        <option [value]="salarie.id">{{ salarie.nom }} {{ salarie.prenom }}</option>
+      }
+    </select>
+    @if ((interventions.length > 0)) {
+        <h3>Interventions attribuées :</h3>
+        <ul>
+          @for (intervention of interventions; track $index) {
+            <li>{{ intervention.date }} durée : {{ intervention.duree }} heures</li>
+          }
+       </ul>
+    }
+  </div>
+</div>
+
