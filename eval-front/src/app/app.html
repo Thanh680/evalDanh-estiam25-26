@@ -8,7 +8,11 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         @if (loggedIn()) {
           <li class="nav-item">
-            <a class="nav-link" routerLink="/projet" routerLinkActive="active">Projet</a>
+            @if (isAdmin) {
+              <a class="nav-link" routerLink="/projet" routerLinkActive="active">Projet</a>
+            } @else {
+              <a class="nav-link" [routerLink]="['/projet', projet]" routerLinkActive="active">Projet</a>
+            }
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/salarie" routerLinkActive="active">Planning salarié</a>

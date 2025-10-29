@@ -1,6 +1,8 @@
-import { Component, signal } from '@angular/core';
+import {Component, signal, OnInit, inject} from '@angular/core';
 import { RouterLink, RouterOutlet, RouterLinkActive } from '@angular/router';
 import { Router } from '@angular/router';
+import {Projet} from '@app/models/projet';
+import {AppuserService} from '@app/services/appuser';
 
 @Component({
   selector: 'app-root',
@@ -9,14 +11,32 @@ import { Router } from '@angular/router';
     RouterLinkActive
   ],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
+  providers: [AppuserService]
 })
-export class App {
+export class App implements OnInit {
 
   constructor(private router: Router) {}
 
   protected readonly title = signal('eval');
+  appuserService = inject(AppuserService);
   loggedIn = signal(this.isLoggedIn());
+  projet: number | null = null;
+  isAdmin: boolean | null = null;
+
+  ngOnInit() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.appuserService.getProjet().subscribe(projet => {
+        this.projet = projet;
+        console.log(this.projet)
+      });
+      this.appuserService.isAdmin().subscribe(result => {
+        this.isAdmin = result;
+        console.log(result);
+      });
+    }
+  }
 
   isLoggedIn(): boolean {
     const token = localStorage.getItem('token');
