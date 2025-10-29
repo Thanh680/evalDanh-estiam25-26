@@ -1,13 +1,13 @@
 package com.evalDanh.evalDanh.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Getter
@@ -20,11 +20,16 @@ public class AppUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
 
+    @Email
+    @NotBlank
     protected String email;
 
+    @NotBlank
+    @Length(min = 4)
     protected String password;
 
-    public void setEmail(String email) {
-        this.email = email.toLowerCase();
-    }
+    @OneToOne
+    protected Client client;
+
+    protected boolean admin;
 }

@@ -1,9 +1,3 @@
-INSERT INTO app_user (id, email, password) VALUES
-                                           ('1','a@a.com', 'root'),
-                                           ('2','b@b.com', 'root'),
-                                           ('3','c@c.com', 'root');
-
-
 INSERT INTO projet (id, nom) VALUES
                                  ('1', 'Project 1'),
                                  ('2', 'Project 2');
@@ -22,6 +16,12 @@ INSERT INTO client (id, adresse, projet_id) VALUES
                                     ('1','123 Main St','1'),
                                     ('2','456 Oak Ave','2'),
                                     ('3','789 Pine Rd',NULL);
+
+INSERT INTO app_user (id, email, password, admin, client_id) VALUES
+                                                      ('1','a@a.com', '$2a$10$KBPFXGAAQIdGOkzg8S4c7OHnyB78w.BKjqAYvxP2yK5vGMTKNXBiK',true,1),
+                                                      ('2','b@b.com', '$2a$10$KBPFXGAAQIdGOkzg8S4c7OHnyB78w.BKjqAYvxP2yK5vGMTKNXBiK',false,2),
+                                                      ('3','c@c.com', '$2a$10$KBPFXGAAQIdGOkzg8S4c7OHnyB78w.BKjqAYvxP2yK5vGMTKNXBiK',false,3);
+
 
 INSERT INTO materiel (designation) VALUES
                                     ('Laptop'),

@@ -1,4 +1,4 @@
-package edu.fbansept.demosecuritye42426.security;
+package com.evalDanh.evalDanh.security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -12,6 +12,7 @@ public class JwtService {
     public String generateToken(AppUserDetails user) {
         return Jwts.builder()
                 .setSubject(user.getUsername())
+                .claim("client", user.getClient() != null ? user.getClient().getId() : null)
                 .setIssuedAt(new Date())
                 .signWith(SignatureAlgorithm.HS256, "azerty")
                 .compact();

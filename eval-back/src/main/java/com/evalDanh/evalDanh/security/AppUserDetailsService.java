@@ -1,7 +1,7 @@
-package edu.fbansept.demosecuritye42426.security;
+package com.evalDanh.evalDanh.security;
 
-import edu.fbansept.demosecuritye42426.dao.AppUserDao;
-import edu.fbansept.demosecuritye42426.models.AppUser;
+import com.evalDanh.evalDanh.dao.AppUserDao;
+import com.evalDanh.evalDanh.models.AppUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

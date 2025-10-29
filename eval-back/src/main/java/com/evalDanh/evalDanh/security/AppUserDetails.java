@@ -1,6 +1,7 @@
-package edu.fbansept.demosecuritye42426.security;
+package com.evalDanh.evalDanh.security;
 
-import edu.fbansept.demosecuritye42426.models.AppUser;
+import com.evalDanh.evalDanh.models.AppUser;
+import com.evalDanh.evalDanh.models.Client;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
@@ -29,5 +30,9 @@ public class AppUserDetails implements UserDetails {
     @Override
     public String getUsername() {
         return user.getEmail();
+    }
+
+    public Client getClient() {
+        return user.getClient();
     }
 }
